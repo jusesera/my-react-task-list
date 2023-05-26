@@ -1,9 +1,7 @@
 function Header () {
   return (
     <header>
-      <h1>Lista de Tareas JSX
-        VAMOSSS QUE SE PUEDEEEEE!!!!!
-      </h1>
+      <h1>Lista de Tareas JSX</h1>
     </header>
   );
 };
