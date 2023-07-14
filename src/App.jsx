@@ -1,6 +1,7 @@
 import './App.css'
 import Header from './Components/Header.jsx'
-import ListaTareas, { useState } from "./Components/ListaTareas"
+import ListaTareas from './Components/ListaTareas'
+
 
 function App() {
 return <div className = "app">
