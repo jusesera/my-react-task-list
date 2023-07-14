@@ -1,11 +1,11 @@
 import './App.css'
 import Header from './Components/Header.jsx'
-import TaskList, { useState } from "./Components/TaskList"
+import ListaTareas, { useState } from "./Components/ListaTareas"
 
 function App() {
 return <div className = "app">
 <Header />
-<TaskList />
+<ListaTareas />
 </div>
 }
 
