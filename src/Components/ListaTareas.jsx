@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useTareas from './useTareas';
+import useForm from './useForm';
 
 const ListaTareas = () => {
   const {
@@ -10,40 +11,45 @@ const ListaTareas = () => {
     actualizarTarea,
   } = useTareas();
 
-  const [nuevaTarea, setNuevaTarea] = useState('');
   const [indiceTareaAEditar, setIndiceTareaAEditar] = useState(null);
 
-  const handleEnvio = (e) => {
-    e.preventDefault();
+  const submitForm = () => {
     if (indiceTareaAEditar !== null) {
-      actualizarTarea(indiceTareaAEditar, nuevaTarea);
+      actualizarTarea(indiceTareaAEditar, valores.nombre);
       setIndiceTareaAEditar(null);
     } else {
-      agregarTarea(nuevaTarea);
+      agregarTarea(valores.nombre);
     }
-    setNuevaTarea('');
+    setValores({ nombre: '', descripcion: '' });
   };
 
-  const handleCambio = (e) => {
-    setNuevaTarea(e.target.value);
-  };
-
-  const editarTarea = (indice) => {
-    setNuevaTarea(tareas[indice].texto);
-    setIndiceTareaAEditar(indice);
-  };
+  const { valores, errores, handleChange, handleSubmit, setValores } = useForm(submitForm);
 
   return (
     <div>
       <h1>Lista de tareas</h1>
-      <form onSubmit={handleEnvio}>
-        <input
-          type="text"
-          value={nuevaTarea}
-          onChange={handleCambio}
-        />
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Nombre de la tarea:</label>
+          <input
+            type="text"
+            name="nombre"
+            value={valores.nombre}
+            onChange={handleChange}
+          />
+          {errores.nombre && <p>{errores.nombre}</p>}
+        </div>
+        <div>
+          <label>Descripción (opcional):</label>
+          <input
+            type="text"
+            name="descripcion"
+            value={valores.descripcion}
+            onChange={handleChange}
+          />
+        </div>
         <button type="submit">
-          {indiceTareaAEditar !== null ? '🔄Actualizar' : '➕ Agregar'}
+          {indiceTareaAEditar !== null ? '🔄 Actualizar' : '➕ Agregar'}
         </button>
       </form>
       <ul>
