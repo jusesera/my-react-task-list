@@ -10,7 +10,6 @@ const useTareas = () => {
       setNuevaTarea('');
     }
   };
-
   const cambiarEstadoTarea = (indice) => {
     const tareasActualizadas = [...tareas];
     tareasActualizadas[indice].completada = !tareasActualizadas[indice].completada;
