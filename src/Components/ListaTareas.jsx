@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useTareas from './useTareas';
 import useForm from './useForm';
+import './styles.css';
 
 const ListaTareas = () => {
   const {
@@ -15,26 +16,32 @@ const ListaTareas = () => {
 
   const editarTarea = (indice) => {
     const tareaAEditar = tareas[indice];
-    setValores({ nombre: tareaAEditar.texto, descripcion: tareaAEditar.descripcion });
+    const nombre = tareaAEditar.texto.substring(tareaAEditar.texto.indexOf(':') + 2);
+    const descripcion = tareaAEditar.descripcion.substring(tareaAEditar.descripcion.indexOf(':') + 2);
+    setValores({ nombre, descripcion });
     setIndiceTareaAEditar(indice);
   };
 
   const submitForm = () => {
     if (indiceTareaAEditar !== null) {
-      actualizarTarea(indiceTareaAEditar, valores.nombre, valores.descripcion);
+      const nuevaTarea = `Tarea: ${valores.nombre}`;
+      const nuevaDescripcion = `Descripcion: ${valores.descripcion}`;
+      actualizarTarea(indiceTareaAEditar, nuevaTarea, nuevaDescripcion);
       setIndiceTareaAEditar(null);
     } else {
-      agregarTarea(valores.nombre, valores.descripcion);
+      const nuevaTarea = `Tarea: ${valores.nombre}`;
+      const nuevaDescripcion = `Descripcion: ${valores.descripcion}`;
+      agregarTarea(nuevaTarea, nuevaDescripcion);
     }
     setValores({ nombre: '', descripcion: '' });
   };
 
-  const { errores, valores, handleChange, handleSubmit, setValores } = useForm(submitForm);
+  const { valores, errores, handleChange, handleSubmit, setValores } = useForm(submitForm);
 
   return (
-    <div>
-      <h1>Lista de tareas</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="task-list-container">
+      <h1 className="task-list-header">Lista de Tareas</h1>
+      <form className="task-form" onSubmit={handleSubmit}>
         <div>
           <label>Nombre de la tarea:</label>
           <input
@@ -60,13 +67,19 @@ const ListaTareas = () => {
       </form>
       <ul>
         {tareas.map((tarea, indice) => (
-          <li key={indice}>
+          <li key={indice} className="task-item">
             {tarea.texto}
-            <button onClick={() => cambiarEstadoTarea(indice)}>
-              {tarea.completada ? '🟢' : '🔴'}
-            </button>
-            <button onClick={() => eliminarTarea(indice)}>🗑️</button>
-            <button onClick={() => editarTarea(indice)}>✏️</button>
+            {tarea.descripcion && <p>{tarea.descripcion}</p>}
+            <div className="task-buttons">
+              <button
+                className={tarea.completada ? 'complete' : 'incomplete'}
+                onClick={() => cambiarEstadoTarea(indice)}
+              >
+                {tarea.completada ? 'Marcar como Pendiente' : 'Marcar como Completada'}
+              </button>
+              <button className="edit" onClick={() => editarTarea(indice)}>Editar</button>
+              <button className="delete" onClick={() => eliminarTarea(indice)}>Eliminar</button>
+            </div>
           </li>
         ))}
       </ul>

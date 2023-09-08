@@ -2,14 +2,15 @@ import { useState } from 'react';
 
 const useTareas = () => {
   const [tareas, setTareas] = useState([]);
-  const [nuevaTarea, setNuevaTarea] = useState('');
+  const [nuevaTarea, setNuevaTarea] = useState({ nombre: '', descripcion: '' });
 
-  const agregarTarea = (texto) => {
-    if (texto.trim() !== '') {
-      setTareas([...tareas, { texto, completada: false }]);
-      setNuevaTarea('');
+  const agregarTarea = (nombre, descripcion) => {
+    if (nombre.trim() !== '') {
+      setTareas([...tareas, { texto: nombre, descripcion, completada: false }]);
+      setNuevaTarea({ nombre: '', descripcion: '' });
     }
   };
+
   const cambiarEstadoTarea = (indice) => {
     const tareasActualizadas = [...tareas];
     tareasActualizadas[indice].completada = !tareasActualizadas[indice].completada;
@@ -21,10 +22,11 @@ const useTareas = () => {
     setTareas(tareasActualizadas);
   };
 
-  const actualizarTarea = (indice, nuevoTexto) => {
-    if (nuevoTexto.trim() !== '') {
+  const actualizarTarea = (indice, nuevoNombre, nuevaDescripcion) => {
+    if (nuevoNombre.trim() !== '') {
       const tareasActualizadas = [...tareas];
-      tareasActualizadas[indice].texto = nuevoTexto;
+      tareasActualizadas[indice].texto = nuevoNombre;
+      tareasActualizadas[indice].descripcion = nuevaDescripcion;
       setTareas(tareasActualizadas);
     }
   };
@@ -35,6 +37,8 @@ const useTareas = () => {
     cambiarEstadoTarea,
     eliminarTarea,
     actualizarTarea,
+    nuevaTarea,
+    setNuevaTarea,
   };
 };
 

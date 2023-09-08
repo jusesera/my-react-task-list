@@ -1,0 +1,84 @@
+/* Estilo general del contenedor de la lista de tareas */
+.task-list-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo para el encabezado de la lista de tareas */
+.task-list-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el formulario de agregar tareas */
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Estilo para los elementos de la lista de tareas */
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Estilo para los botones de acción en los elementos de la lista de tareas */
+.task-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Estilo para los botones de editar y eliminar */
+.task-buttons button {
+    cursor: pointer;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.task-buttons button.edit {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.task-buttons button.delete {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+/* Estilo para el botón de marcar como completada */
+.task-buttons button.complete {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+/* Estilo para el botón de desmarcar como completada */
+.task-buttons button.incomplete {
+    background-color: #e67e22;
+    color: #fff;
+}
+.task-item p {
+    font-family: Arial, sans-serif;
+    /* Cambia el tipo de letra de la descripción */
+    font-size: 15px;
+    /* Cambia el tamaño de fuente de la descripción */
+    margin-top: 5%;
+    /* Agrega un pequeño espacio entre el nombre y la descripción */
+    color: #f80000;
+    /* Cambia el color del texto de la descripción */
+}
+.task-item {
+    display: flex;
+    flex-direction: column;
+    /* Coloca los elementos en una columna */
+    align-items: flex-start;
+}

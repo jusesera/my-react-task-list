@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const useForm = (callback) => {
   const [valores, setValores] = useState({ nombre: '', descripcion: '' });
@@ -31,7 +31,7 @@ const useForm = (callback) => {
     if (Object.keys(errores).length === 0 && enviando) {
       callback();
     }
-  }, [errores, enviando, callback]);
+  }, [errores, enviando]);
 
   return {
     valores,
