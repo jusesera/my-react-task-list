@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import useTareas from './useTareas';
-import useForm from './useForm';
-import './styles.css';
+import useTareas from '../Components/useTareas';
+import useForm from '../Components/useForm';
+import '../style/Styles.css';
 
-const ListaTareas = () => {
+const ListaTareasPage = () => {
   const {
     tareas,
     agregarTarea,
@@ -87,4 +87,4 @@ const ListaTareas = () => {
   );
 };
 
-export default ListaTareas;
+export default ListaTareasPage;
